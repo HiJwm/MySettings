@@ -48,9 +48,9 @@ sed -i '/DISTRIB_DESCRIPTION/d' /etc/openwrt_release
 echo "DISTRIB_DESCRIPTION='OpenWrt 21.02-SNAPSHOT'" >> /etc/openwrt_release
 
 #个人设置，添加编译时间
-date=`date +%Y.%m.%d`
 sed -i '/luciversion/d' /usr/lib/lua/luci/version.lua
-echo 'luciversion =Build date $date' >> /usr/lib/lua/luci/version.lua
+echo 'luciversion =Build on'$(TZ=UTC-8 date +%Y-%m-%d)' >> /usr/lib/lua/luci/version.lua
+'$(TZ=UTC-8 date +%Y-%m-%d -d +"1"days)'
 
 # 删除状态页不需显示的
 rm -rf /usr/lib/lua/luci/view/admin_status/index
