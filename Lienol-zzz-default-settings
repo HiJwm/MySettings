@@ -45,11 +45,12 @@ sed -i '/set wireless.radio${devidx}.disabled/d' /lib/wifi/mac80211.sh
 wifi up
 
 sed -i '/DISTRIB_DESCRIPTION/d' /etc/openwrt_release
-echo "DISTRIB_DESCRIPTION='OpenWrt 22.03-${luciversion}'" >> /etc/openwrt_release
+echo "DISTRIB_DESCRIPTION='OpenWrt 22.03-$(date +%Y%m%d) by HiJwm'" >> /etc/openwrt_release
 
 #个人设置，添加编译时间
-echo 'luciversion=Build on'$(TZ=UTC-8 date +%Y-%m-%d)' >> /usr/lib/lua/luci/version.lua
 sed -i '/luciversion/d' /usr/lib/lua/luci/version.lua
+echo 'luciversion=Build on'$(TZ=UTC-8 date +%Y-%m-%d)' >> /usr/lib/lua/luci/version.lua
+
 
 # 删除状态页不需显示的
 rm -rf /usr/lib/lua/luci/view/admin_status/index
